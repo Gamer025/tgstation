@@ -27,18 +27,27 @@ jobs:
           name: ${{ github.repository }}
           pullID: ${{ github.event.pull_request.number }}
 
-      - name: Debug
-        run: echo ${{ steps.CodeOwnersNotifer.outputs.comment-needed }}
-
-      - name: Add comment to PR
-        uses: actions/github-script@v5
-        if: ${{ steps.CodeOwnersNotifer.outputs.comment-needed == 'true'}}
+      - name: Check if already commented
+        uses: peter-evans/find-comment@v1
+        id: find-comment
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '${{ steps.CodeOwnersNotifer.outputs.comment-content }}'
-            })
+          issue-number: ${{ github.event.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Notifying code owners
+          
+      - name: Create new comment
+        if: steps.fc.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.number }}
+          body: |
+            ${{ steps.diff.outputs.summary-details }}
+            
+      - name: Update existing comment
+        if: steps.fc.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: append
+          body: |
+            ${{ steps.diff.outputs.summary-details }}
