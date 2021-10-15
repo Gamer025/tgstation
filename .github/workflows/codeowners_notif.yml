@@ -41,7 +41,7 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           body: |
-            ${{ steps.diff.outputs.summary-details }}
+            ${{ steps.CodeOwnersNotifer.outputs.comment-content }}
             
       - name: Update existing comment
         if: steps.fc.outputs.comment-id != ''
@@ -50,4 +50,4 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: append
           body: |
-            ${{ steps.diff.outputs.summary-details }}
+            ${{ steps.CodeOwnersNotifer.outputs.comment-content }}
