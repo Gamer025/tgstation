@@ -47,7 +47,7 @@
 /code/controllers/subsystem.dm @MrStonedOneNoPing
 /code/controllers/subsystem/timer.dm @MrStonedOneNoPing
 /code/controllers/configuration/entries @MrStonedOneNoPing
-/config/ @MrStonedOne
+/config/ @MrStonedOneNoPing
 
 # Mothblocks
 
