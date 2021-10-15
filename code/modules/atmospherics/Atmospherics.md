@@ -1,4 +1,4 @@
-# Atmospherics
+# AtmosphericsTEST
 ## 1. Preamble
 
 This file will be written in the first person in the interest of having a laid back style, as some of the concepts here would be ass to read as technical writing. Understand that this isn't the work of one person, but the combined efforts of several contributors. It is a living document, and one you should strive to keep up to date.
