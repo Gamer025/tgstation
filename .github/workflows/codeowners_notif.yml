@@ -36,7 +36,7 @@ jobs:
           body-includes: Notifying code owners
           
       - name: Create new comment
-        if: steps.fc.outputs.comment-id == ''
+        if: steps.fc.outputs.comment-id == '' && steps.CodeOwnersNotifer.outputs.comment-needed == 'true'
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.number }}
@@ -44,7 +44,7 @@ jobs:
             ${{ steps.CodeOwnersNotifer.outputs.comment-content }}
             
       - name: Update existing comment
-        if: steps.fc.outputs.comment-id != ''
+        if: steps.fc.outputs.comment-id != '' && steps.CodeOwnersNotifer.outputs.comment-needed == 'true'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
