@@ -1,4 +1,4 @@
-// Citrus - base type
+// Citrus - based
 /obj/item/food/grown/citrus
 	seed = /obj/item/seeds/lime
 	name = "citrus"
