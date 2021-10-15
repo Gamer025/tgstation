@@ -1,4 +1,4 @@
-/// Preference middleware is code that helps to decentralize complicated preference features.
+/// Preference middleware is code that helps to decentralize complicated preference features. Test
 /datum/preference_middleware
 	/// The preferences datum
 	var/datum/preferences/preferences
