@@ -5,7 +5,7 @@
 # to the same file or dir, add them to the end under Multiple Owners
 
 # Cobby
-/code/modules/reagents/ @ExcessiveUseOfCobblestoneNoPing
+/code/modules/reagents/ @Gamer025
 /code/modules/research/designs/medical_designs.dm @ExcessiveUseOfCobblestoneNoPing
 /code/modules/surgery/ @ExcessiveUseOfCobblestoneNoPing
 /code/game/objects/items/storage/firstaid.dm @ExcessiveUseOfCobblestoneNoPing
