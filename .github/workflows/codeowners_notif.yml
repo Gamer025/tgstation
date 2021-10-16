@@ -1,53 +1,29 @@
-# This is a basic workflow to help you get started with Actions
+#Example worflow for Gamer025/CodeOwnersParser
 
-name: Codeowner Notification
+name: Codeowner Assignment
 
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ main, CodeownerNotifierTest, master]
+    branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  Notify-codeowners:
-    # The type of runner that the job will run on
+  assign-users:
+
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: CodeOwnersNotifer
-        id: CodeOwnersNotifer
-        uses: Gamer025/CodeOwnersNotifier@master
-        with:
-          owner: ${{ github.repository_owner }}
-          name: ${{ github.repository }}
-          pullID: ${{ github.event.pull_request.number }}
-
-      - name: Check if already commented
-        uses: peter-evans/find-comment@v1
-        id: find-comment
-        with:
-          issue-number: ${{ github.event.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: Notifying code owners
+      - name: CodeOwnersParser
+        id: CodeOwnersParser
+        uses: Gamer025/CodeOwnersParser@master
           
-      - name: Create new comment
-        if: steps.fc.outputs.comment-id == '' && steps.CodeOwnersNotifer.outputs.comment-needed == 'true'
-        uses: peter-evans/create-or-update-comment@v1
+      #Assign users
+      - name: Assign users
+        if: steps.CodeOwnersParser.outputs.owners != ''
+        uses: Gamer025/AssignUser@master
         with:
-          issue-number: ${{ github.event.number }}
-          body: |
-            ${{ steps.CodeOwnersNotifer.outputs.comment-content }}
-            
-      - name: Update existing comment
-        if: steps.fc.outputs.comment-id != '' && steps.CodeOwnersNotifer.outputs.comment-needed == 'true'
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: append
-          body: |
-            ${{ steps.CodeOwnersNotifer.outputs.comment-content }}
+          separator: ' '
+          users: ${{ steps.CodeOwnersParser.outputs.owners }}
