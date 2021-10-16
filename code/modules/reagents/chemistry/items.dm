@@ -1,4 +1,4 @@
-///if the ph_meter gives a detailed output
+
 #define DETAILED_CHEM_OUTPUT 1
 ///if the pH meter gives a shorter output
 #define SHORTENED_CHEM_OUTPUT 0
