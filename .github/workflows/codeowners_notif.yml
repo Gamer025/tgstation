@@ -5,7 +5,7 @@ name: Codeowner Assignment
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main,  CodeownerNotifierTest ]
 
 jobs:
   assign-users:
