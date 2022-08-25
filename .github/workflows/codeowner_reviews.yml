@@ -15,12 +15,12 @@ jobs:
       #Parse the Codeowner file
       - name: CodeOwnersParser
         id: CodeOwnersParser
-        uses: tgstation/CodeOwnersParser@v1
+        uses: Gamer025/CodeOwnersParser@master
 
       #Request reviews
       - name: Request reviews
         if: steps.CodeOwnersParser.outputs.owners != ''
-        uses: tgstation/RequestReviewFromUser@v1
+        uses: Gamer025/RequestReviewFromUser@master
         with:
           separator: ' '
           users: ${{ steps.CodeOwnersParser.outputs.owners }}
