@@ -16,7 +16,12 @@ jobs:
       - name: CodeOwnersParser
         id: CodeOwnersParser
         uses: Gamer025/CodeOwnersParser@V1.0.3
-
+        with:
+          prefix: "Test: "
+          
+      - name: Debug print
+        run: echo "Owners:" ${{ steps.CodeOwnersParser.outputs.owners }} "\n Formated Owners:"  ${{ steps.CodeOwnersParser.outputs.owners-formatted }}
+        
       #Request reviews
       - name: Request reviews
         if: steps.CodeOwnersParser.outputs.owners != ''
