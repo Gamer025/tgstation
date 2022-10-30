@@ -8,7 +8,7 @@
 
 # Cyberboss
 
-/code/__HELPERS/jatum.dm @Cyberboss
+/code/__HELPERS/jatum.dm @Gamer025
 /code/controllers/subsystem/atoms.dm @Cyberboss
 /code/controllers/subsystem/mapping.dm @Cyberboss
 /code/controllers/globals.dm @Cyberboss
