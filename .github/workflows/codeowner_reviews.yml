@@ -15,7 +15,7 @@ jobs:
       #Parse the Codeowner file
       - name: CodeOwnersParser
         id: CodeOwnersParser
-        uses: tgstation/CodeOwnersParser@v1
+        uses: Gamer025/CodeOwnersParser@V1.0.3
 
       #Request reviews
       - name: Request reviews
