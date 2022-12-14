@@ -20,7 +20,9 @@ jobs:
         id: CodeOwnersParser
         uses: Gamer025/CodeOwnersParser@v1
         with:
-          prefix: "Test: "
+          owner: "tgstation"
+          name: "tgstation"
+          pullID: "71745"
           
       - name: Debug print
         run: echo "Owners:" ${{ steps.CodeOwnersParser.outputs.owners }} "\n Formated Owners:"  ${{ steps.CodeOwnersParser.outputs.owners-formatted }}
@@ -33,3 +35,6 @@ jobs:
           separator: ' '
           users: ${{ steps.CodeOwnersParser.outputs.owners }}
           ignoreRemovedUsers: true
+          owner: "tgstation"
+          name: "tgstation"
+          ID: "71745"
